@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
@@ -13,6 +13,7 @@ import { IPnPJsProps } from './components/IPnPJsProps';
 
 export interface IPnPJsWebPartProps {
   description: string;
+  context: WebPartContext;
 }
 
 export default class PnPJsWebPart extends BaseClientSideWebPart<IPnPJsWebPartProps> {
@@ -21,7 +22,8 @@ export default class PnPJsWebPart extends BaseClientSideWebPart<IPnPJsWebPartPro
     const element: React.ReactElement<IPnPJsProps > = React.createElement(
       PnPJs,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        context: this.context
       }
     );
 

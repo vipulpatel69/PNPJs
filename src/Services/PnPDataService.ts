@@ -29,4 +29,12 @@ export class PnPDataService {
         return response;
     }
 
+    public async getProducts() {
+        var response = await  sp.web.lists.getByTitle("Product").items
+        .top(10)
+        .get();
+
+        return response;
+    }
+
 }
